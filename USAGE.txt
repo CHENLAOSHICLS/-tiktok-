@@ -1,0 +1,15 @@
+用法:
+  python3 tiktok_author_downloader.py <任意该博主的一条视频链接>
+  # 可选: 指定 cookies.txt 路径
+  python3 tiktok_author_downloader.py <视频链接> --cookies ~/amemv-crawler/cookies.txt
+
+说明:
+- 程序会从该视频解析作者与 channel_id, 然后用 tiktokuser:<channel_id> 抓取作者全部视频
+- 下载位置: ~/下载/<作者名>/
+- 文件命名: %(title)s - %(upload_date)s
+- 去重: 使用 download_archive.txt 记录已下载ID, 后续只增量下载
+- 登录: 若存在 --cookies 指定的 cookies.txt 则优先使用; 否则尝试自动读取 Chrome Cookies
+
+示例:
+  python3 tiktok_author_downloader.py "https://www.tiktok.com/@fukada0318/video/7541668291329150224"
+  python3 tiktok_author_downloader.py "https://www.tiktok.com/@xxx/video/1234567890" --cookies ~/amemv-crawler/cookies.txt
